@@ -15,7 +15,7 @@ def get_coffi(coffi):
 
 
 def fetch_coordinates(apikey, address):
-    with open('D:\Хуйня\Python school\Урок_8\coffee.json', 'r', encoding='CP1251') as my_file:
+    with open('Cofmap/coffee.json', 'r', encoding='CP1251') as my_file:
         file_content = my_file.read()
     capitails = json.loads(file_content)
     
