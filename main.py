@@ -2,11 +2,11 @@ import json
 import requests
 import folium
 from geopy import distance
-from pprint import pprint
 from flask import Flask
+import config
 
 
-apikey = 'e3d06fc1-b2f8-4a74-98f3-08cf609fdae9'
+apikey = config.token
 address = input('Введите ваш адрес: ')
 
 
