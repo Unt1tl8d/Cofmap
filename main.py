@@ -1,24 +1,23 @@
 import json
+import os
+from dotenv import load_dotenv
 import requests
 import folium
 from geopy import distance
 from flask import Flask
-import config
-
-
-apikey = config.token
-address = input('Введите ваш адрес: ')
 
 
 def get_coffi(coffi):
     return coffi['distance']
 
 
-def fetch_coordinates(apikey, address):
+def fetch_coordinates():
+    load_dotenv()
+    apikey = os.getenv('TOKEN')
+    address = input('Введите ваш адрес: ')
     with open("coffee.json", 'r', encoding='CP1251') as my_file:
         file_content = my_file.read()
     capitails = json.loads(file_content)
-    
     coffis = []
     base_url = "https://geocode-maps.yandex.ru/1.x"
     response = requests.get(base_url, params={
@@ -81,7 +80,7 @@ def hello_world():
 
 
 def main():
-    fetch_coordinates(apikey, address)
+    fetch_coordinates()
 
 
 if __name__ == '__main__':
