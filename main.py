@@ -47,7 +47,6 @@ def fetch_coordinates():
         cof['latitude'] = latitude
         cof['longitude'] = longitude
         coffis.append(cof)
-    
     mincoffis = sorted(coffis, key=get_coffi)
     map(lon, lat, mincoffis)
     return lon, lat, mincoffis
@@ -56,17 +55,17 @@ def fetch_coordinates():
 def map(lon, lat, mincoffis):
     m = folium.Map([lat, lon], zoom_start=16)
     folium.Marker(
-    location=[lat, lon],
-    tooltip="It's you",
-    popup="You location",
-    icon=folium.Icon(icon="cloud"),
-    ).add_to(m)
+        location=[lat, lon],
+        tooltip="It's you",
+        popup="You location",
+        icon=folium.Icon(icon="cloud"),
+        ).add_to(m)
     for i in mincoffis[:5]:
         late = i['latitude']
         lone = i['longitude']
         title = i['title']
         group_1 = folium.FeatureGroup("first group").add_to(m)
-        folium.Marker((late, lone), tooltip=(title),icon=folium.Icon("green")).add_to(group_1)
+        folium.Marker((late, lone), tooltip=(title), icon=folium.Icon("green")).add_to(group_1)
     folium.LayerControl().add_to(m)
     m.save("map.html")
     app = Flask(__name__)
